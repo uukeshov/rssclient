@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="top"
+    android:background="#aea8a0"
+    android:paddingTop="3dp">
+
+    <TableRow android:background="#fff">
+
+        <TableLayout
+            android:layout_width="280dip"
+            android:layout_height="100dip"
+            android:layout_gravity="top"
+            android:paddingTop="0dip">
+
+            <TableRow>
+
+                <TextView android:id="@+id/text" />
+                <!--title-->
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1" android:layout_gravity="left|center_vertical"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#000"
+                android:layout_span="1"
+                />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:id="@+id/text1" />
+                <!--link-->
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1" android:layout_gravity="left|center_vertical"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#000"
+                android:layout_span="1"
+                />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:id="@+id/text2" />
+                <!--pubDate-->
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1" android:layout_gravity="left|center_vertical"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#000"
+                android:layout_span="1"
+                />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:id="@+id/text3" />
+                <!--news text-->
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1" android:layout_gravity="left|center_vertical"
+                android:textSize="16sp"
+                android:layout_marginLeft="10dip"
+                android:layout_marginTop="2dip"
+                android:textColor="#000"
+                android:layout_span="1"
+                />
+            </TableRow>
+
+
+        </TableLayout>
+    </TableRow>
+</TableLayout>
