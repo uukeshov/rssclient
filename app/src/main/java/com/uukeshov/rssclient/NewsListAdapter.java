@@ -10,9 +10,9 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +63,6 @@ public class NewsListAdapter extends BaseAdapter implements
         public TextView text;
         public TextView text1;
         public TextView text2;
-        public TextView text3;
         public ImageView image;
     }
 
@@ -81,7 +80,6 @@ public class NewsListAdapter extends BaseAdapter implements
             holder.text = (TextView) vi.findViewById(R.id.text);
             holder.text1 = (TextView) vi.findViewById(R.id.text1);
             holder.text2 = (TextView) vi.findViewById(R.id.text2);
-            holder.text3 = (TextView) vi.findViewById(R.id.text3);
             //s  holder.image = (ImageView) vi.findViewById(R.id.image);
 
             /* Set holder with LayoutInflater */
@@ -90,36 +88,37 @@ public class NewsListAdapter extends BaseAdapter implements
             holder = (ViewHolder) vi.getTag();
         RSS item = rData.get(position);
         // Context context = parent.getContext();
-
-        if (item.get_newstext().length() < 50) {
-            holder.text.setText(item.get_newstext());
-        } else if (item.get_newstext().length() > 50) {
-            holder.text.setText(item.get_newstext().substring(0, 49) + " ...");
+        Log.d(LOG_TAG, "--- onCreate database 1 ---" + item.get_newsTitle());
+        if (item.get_newsTitle().length() < 50) {
+            holder.text.setText(item.get_newsTitle());
+        } else if (item.get_newsTitle().length() > 50) {
+            holder.text.setText(item.get_newsTitle().substring(0, 49) + " ...");
         }
-        // holder.text1.setText(item.get_newspubDate());
-        holder.text1.setText(item.get_newspubDate());
 
-        /* Set Item Click Listner for LayoutInflater for each row ***/
-        vi.setOnClickListener(new OnItemClickListener(position, item.get_newstitle(), Integer.toString(item.get_noteId()), item.get_noteTheme(), String.valueOf(item.get_latitude()), String.valueOf(item.get_longitude())));
+        holder.text1.setText(item.get_newsPubDate());
+        holder.text2.setText(item.get_newsLink());
+
+     /* Set Item Click Listner for LayoutInflater for each row ***/
+        vi.setOnClickListener(new OnItemClickListener(position, item.get_newsTitle(), item.get_newsLink(), item.get_newsPubDate(), item.get_newsLinktoImage(), item.get_newsDescr()));
         return vi;
     }
 
     /* Called when Item click in ListView ***/
     private class OnItemClickListener implements OnClickListener {
         private int mPosition;
-        private String note_t;
-        private String note_i;
-        private String note_th;
-        private String note_lat;
-        private String note_lon;
+        private String _newstitle;
+        private String _newslink;
+        private String _newspubDate;
+        private String _newsenclosure;
+        private String _newstext;
 
-        OnItemClickListener(int position, String note_text, String note_id, String note_theme, String latitude, String longitude) {
+        OnItemClickListener(int position, String newstitle, String newslink, String newspubDate, String newsenclosure, String newstext) {
             mPosition = position;
-            note_t = note_text;
-            note_i = note_id;
-            note_th = note_theme;
-            note_lat = latitude;
-            note_lon = longitude;
+            _newstitle = newstitle;
+            _newslink = newslink;
+            _newspubDate = newspubDate;
+            _newsenclosure = newsenclosure;
+            _newstext = newstext;
         }
 
         @Override
@@ -128,16 +127,14 @@ public class NewsListAdapter extends BaseAdapter implements
             Intent myIntent = new Intent(mContext, ViewNewsActivity.class);
             //добавитьпередачу текста
             myIntent.putExtra("mPosition", String.valueOf(mPosition));
-            myIntent.putExtra("note_text", note_t);
-            myIntent.putExtra("note_id", String.valueOf(note_i));
-            myIntent.putExtra("note_theme", note_th);
-            myIntent.putExtra("latitude", String.valueOf(note_lat));
-            myIntent.putExtra("longitude", String.valueOf(note_lon));
+            myIntent.putExtra("newstitle", _newstitle);
+            myIntent.putExtra("newslink", _newslink);
+            myIntent.putExtra("newspubDate", _newspubDate);
+            myIntent.putExtra("newsenclosure", _newsenclosure);
+            myIntent.putExtra("newstext", _newstext);
             myIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             mContext.startActivity(myIntent);
 
         }
     }
-
-
 }

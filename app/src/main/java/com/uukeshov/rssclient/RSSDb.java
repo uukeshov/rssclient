@@ -18,7 +18,7 @@ public class RSSDb extends SQLiteOpenHelper {
     private static final String LOG_TAG = "RSSDbLog";
 
     public RSSDb(Context context) {
-        super(context, "RSSDB", null, 1);
+        super(context, "RSSDB", null, 4);
     }
 
     @Override
@@ -26,22 +26,22 @@ public class RSSDb extends SQLiteOpenHelper {
         Log.d(LOG_TAG, "--- onCreate database ---");
         // создаем таблицу с полями
         db.execSQL("create table newstable (id integer primary key autoincrement," +
-                "newstitle text," +
-                "newslink text," +
-                "newspubDate text," +
-                "newsenclosure text, " +
-                "newstext text);");
+                        "newstitle text," +
+                        "newslink text," +
+                        "newspubDate text," +
+                        "newsenclosure text, " +
+                        "newsdescr text)"
+        );
     }
-
 
     public void addnews(RSS rss) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("newstitle", rss.get_newstitle());
-        cv.put("newslink", rss.get_newslink());
-        cv.put("newspubDate", rss.get_newspubDate());
-        cv.put("newsenclosure", rss.get_newsenclosure());
-        cv.put("newstext", rss.get_newstext());
+        cv.put("newstitle", rss.get_newsTitle());
+        cv.put("newslink", rss.get_newsLink());
+        cv.put("newspubDate", rss.get_newsPubDate());
+        cv.put("newsenclosure", rss.get_newsLinktoImage());
+        cv.put("newsdescr", rss.get_newsDescr());
         db.insert("newstable", null, cv);
         db.close();
     }
@@ -56,12 +56,12 @@ public class RSSDb extends SQLiteOpenHelper {
             do {
                 RSS rss = new RSS();
                 rss.set_newsId(Integer.valueOf(cursor.getString(0)));
-                rss.set_newslink(cursor.getString(1));
-                rss.set_newspubDate(cursor.getString(2));
-                rss.set_newsenclosure(cursor.getString(3));
-                rss.set_newstext(cursor.getString(4));
+                rss.set_newsTitle(cursor.getString(1));
+                rss.set_newsLink(cursor.getString(2));
+                rss.set_newsPubDate(cursor.getString(3));
+                rss.set_newsDescr(cursor.getString(4));
+                rss.set_newsLinktoImage(cursor.getString(5));
                 rssList.add(rss);
-                //      Log.d(LOG_TAG, "--- onCreate database ---" + note);
             } while (cursor.moveToNext());
         }
         db.close();
@@ -73,7 +73,6 @@ public class RSSDb extends SQLiteOpenHelper {
         db.execSQL("delete from " + "newstable");
         db.close();
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

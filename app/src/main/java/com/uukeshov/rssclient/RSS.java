@@ -5,82 +5,85 @@ package com.uukeshov.rssclient;
  */
 public class RSS {
 
-    String _newstitle;
-    String _newslink;
-    String _newspubDate;
-    String _newsenclosure;
-    String _newstext;
+    String _newsLink; //link to image
+    String _newsPubDate;
+    String _newsLinktoImage; //link to news
+    String _newsTitle;
+    String _newsDescr;
     int _newsId;
+
+    public RSS() {
+    }
+
+    public String get_newsLinktoImage() {
+        return _newsLinktoImage;
+    }
+
+    public void set_newsLinktoImage(String newsLinktoImage) {
+        this._newsLinktoImage = newsLinktoImage;
+    }
+
+    public String get_newsLink() {
+        return _newsLink;
+    }
+
+    public void set_newsLink(String newsLink) {
+        this._newsLink = newsLink;
+    }
+
+    public String get_newsPubDate() {
+        return _newsPubDate;
+    }
+
+    public void set_newsPubDate(String newsPubDate) {
+
+        /*Calendar c = Calendar.getInstance();
+        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formateDate = dt.format(newsPubDate);*/
+        this._newsPubDate = newsPubDate;
+    }
+
+    public String get_newsTitle() {
+        return _newsTitle;
+    }
+
+    public void set_newsTitle(String newsTitle) {
+        this._newsTitle = newsTitle;
+    }
 
     public int get_newsId() {
         return _newsId;
     }
 
-    public void set_newsId(int _newsId) {
-        this._newsId = _newsId;
+    public void set_newsId(int newsId) {
+        this._newsId = newsId;
     }
 
-    public String get_newstitle() {
-        return _newstitle;
+    public String get_newsDescr() {
+        return _newsDescr;
     }
 
-    public void set_newstitle(String _newstitle) {
-        this._newstitle = _newstitle;
+    public void set_newsDescr(String _newsDescr) {
+        this._newsDescr = _newsDescr;
     }
 
-    public String get_newslink() {
-        return _newslink;
-    }
-
-    public void set_newslink(String _newslink) {
-        this._newslink = _newslink;
-    }
-
-    public String get_newspubDate() {
-        return _newspubDate;
-    }
-
-    public void set_newspubDate(String _newspubDate) {
-        this._newspubDate = _newspubDate;
-    }
-
-    public String get_newsenclosure() {
-        return _newsenclosure;
-    }
-
-    public void set_newsenclosure(String _newsenclosure) {
-        this._newsenclosure = _newsenclosure;
-    }
-
-    public String get_newstext() {
-        return _newstext;
-    }
-
-    public void set_newstext(String _newstext) {
-        this._newstext = _newstext;
-    }
-
-    public RSS() {
-    }
-
-    public RSS(int _newsId,String _newstitle, String _newslink, String _newspubDate, String _newsenclosure, String _newstext) {
-        this._newstitle = _newstitle;
-        this._newslink = _newslink;
-        this._newspubDate = _newspubDate;
-        this._newsenclosure = _newsenclosure;
-        this._newstext = _newstext;
-        this._newsId = _newsId;
+    public RSS(String newsTitle, String newsLink, String newsPubDate, String newsDescr, String newsLinktoImage) {
+        this._newsTitle = newsTitle;
+        this._newsLink = newsLink;
+        this._newsPubDate = newsPubDate;
+        this._newsDescr = newsDescr;
+        this._newsLinktoImage = newsLinktoImage;
     }
 
     @Override
     public String toString() {
         return "RSS{" +
-                "_newstitle='" + _newstitle + '\'' +
-                ", _newslink='" + _newslink + '\'' +
-                ", _newspubDate='" + _newspubDate + '\'' +
-                ", _newsenclosure='" + _newsenclosure + '\'' +
-                ", _newstext='" + _newstext + '\'' +
-                ", _newsId='" + _newsId + '\'' +
+                ", _newsTitle='" + _newsTitle + '\'' +
+                ", _newsLink='" + _newsLink + '\'' +
+                ", _newsPubDate='" + _newsPubDate + '\'' +
+                ", _newsDescr='" + _newsDescr + '\'' +
+                ", _newsLinktoImage='" + _newsLinktoImage + '\'' +
+                ", _newsId=" + _newsId +
                 '}';
     }
 }
